@@ -34,6 +34,11 @@ docker compose up --build
 
 Dataset files will be saved to your local `./data` folder.
 
+### 3. Run Without Rebuilding (If Already Built)
+
+```bash
+docker compose up
+```
 --- 
 
 ## 🧠 About the Dataset
