@@ -8,4 +8,4 @@ services:
     container_name: kagglehub-demo
     volumes:
       - ./data:/app/data
-    command: python app.py
+    command: python app/data_loader.py

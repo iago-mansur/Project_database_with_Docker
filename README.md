@@ -48,24 +48,24 @@ Dataset files will be saved to your local `./data` folder.
 
 ```bash
 Project_database_with_Docker/
-│
-├── app.py                 # Main Python script
-├── requirements.txt       # Python dependencies
-├── Dockerfile             # Docker build config
-├── docker-compose.yml     # Docker Compose config
-├── data/                  # ⬅️ Dataset files will be saved here
-└── README.md              # Project info
+├── app/
+│   └── data_loader.py      # Python script to download dataset
+├── data/                   # ⬅️ Dataset files will be saved here
+├── Dockerfile              # Docker build config
+├── docker-compose.yml      # Docker Compose config
+├── requirements.txt        # Python dependencies
+└── README.md               # Project info
 ```
 
 ---
 
 ## 🐳 Docker Notes
 
-**Volume**: The ./data folder is mounted inside the container as `/app/data`.
+**Volume**: The `./data` folder is mounted inside the container as `/app/data`.
 
 **Kagglehub** automatically downloads and caches datasets.
 
-**Data output** is handled via a Python script that copies files into the `/data` volume.
+**Data output** is handled by the script at `app/data_loader.py`.
 
 ---
 

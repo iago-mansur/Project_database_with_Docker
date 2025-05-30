@@ -10,11 +10,12 @@ WORKDIR /app
 
 # Copy files
 COPY requirements.txt .
-COPY app.py .
+COPY app/ app/
 
 # Install dependencies
 RUN pip install --upgrade pip \
  && pip install -r requirements.txt
 
 # Run the app
-CMD ["python", "app.py"]
+CMD ["python", "app/data_loader.py"]
+
