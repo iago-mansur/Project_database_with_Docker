@@ -15,7 +15,3 @@ COPY app/ app/
 # Install dependencies
 RUN pip install --upgrade pip \
  && pip install -r requirements.txt
-
-# Run the app
-CMD ["python", "app/data_loader.py"]
-
