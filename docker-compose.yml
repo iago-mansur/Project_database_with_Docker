@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  kagglehub-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kagglehub-demo
+    volumes:
+      - ./data:/app/data
+    command: python app.py

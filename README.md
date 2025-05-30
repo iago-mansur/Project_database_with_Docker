@@ -11,7 +11,9 @@ It is an upgraded version of the original project:
 
 - **Python 3.10-slim** Docker container
 - Installs `kagglehub[pandas-datasets]`
-- Loads a Kaggle dataset
+- Downloads a real Kaggle dataset
+- Saves data to a shared /data volume
+- Uses Docker Compose for orchestration
 
 ---
 
@@ -24,19 +26,13 @@ git clone https://github.com/iago-mansur/Project_database_with_Docker.git
 cd Project_database_with_Docker
 ```
 
-### 2. Build the Docker Image
+### 2. Build & Run with Docker Compose
 
 ```bash
-docker build -t kagglehub-demo .
+docker compose up --build
 ```
 
-### 3. Run the Container
-
-```bash
-docker run --rm kagglehub-demo
-```
-
-You should see the the files downloaded.
+Dataset files will be saved to your local `./data` folder.
 
 --- 
 
@@ -48,38 +44,35 @@ You should see the the files downloaded.
 
 ---
 
-## 🛠 Modify Dataset File Path
+## 📂 Folder Structure
 
-You can list available files in the dataset by modifying `app.py`:
-
-```python
-import kagglehub
-import os
-
-dataset_path = kagglehub.dataset_download("ricardotachinardi/ifood-restaurants-data")
-print("Files in dataset:")
-for filename in os.listdir(dataset_path):
-    print("-", filename)
+```bash
+Project_database_with_Docker/
+│
+├── app.py                 # Main Python script
+├── requirements.txt       # Python dependencies
+├── Dockerfile             # Docker build config
+├── docker-compose.yml     # Docker Compose config
+├── data/                  # ⬅️ Dataset files will be saved here
+└── README.md              # Project info
 ```
 
-Then set `file_path` accordingly:
-
-```python
-file_path = "ifood-restaurants-february-2021.csv"
-```
+---
 
 ## 🐳 Docker Notes
 
-- **Base image**: python:3.10-slim
+**Volume**: The ./data folder is mounted inside the container as `/app/data`.
 
-- **Dependencies** installed via: `pip install kagglehub[pandas-datasets]`
+**Kagglehub** automatically downloads and caches datasets.
 
-- **Run-time data** is downloaded inside the container at /root/.cache/kagglehub
+**Data output** is handled via a Python script that copies files into the `/data` volume.
 
 ---
+
+
 
 ## 📄 License
 
 This project is open-source and for educational/demo purposes only.
 
-> **Note:** To use `kagglehub`, ensure you have your Kaggle API credentials properly configured inside the Docker container or on your host machine.
+> **Note:** To use `kagglehub`, you may need to have your Kaggle API credentials configured.
