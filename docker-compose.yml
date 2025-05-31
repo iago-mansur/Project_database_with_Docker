@@ -1,11 +1,14 @@
-version: "3.9"
+version: '3.8'
 
 services:
-  kagglehub-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: kagglehub-demo
+  app:
+    build: .
+    ports:
+      - "8888:8888"
     volumes:
-      - ./data:/app/data
-    command: python app/data_loader.py
+      - ./app:/app
+    working_dir: /app
+    command: >
+      sh -c "python data_loader.py && 
+             jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --NotebookApp.token=''"
+

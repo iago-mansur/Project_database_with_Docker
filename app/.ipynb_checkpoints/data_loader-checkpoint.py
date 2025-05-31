@@ -5,7 +5,7 @@ import kagglehub
 from pathlib import Path
 
 # Constants
-DEST_FOLDER = Path("./data")
+DEST_FOLDER = Path("../data")
 FEB_FILE = DEST_FOLDER / "ifood-restaurants-february-2021.csv"
 NOV_FILE = DEST_FOLDER / "ifood-restaurants-november-2020.csv"
 MERGED_FILE = DEST_FOLDER / "ifood_combined.csv"

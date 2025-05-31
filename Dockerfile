@@ -10,8 +10,11 @@ WORKDIR /app
 
 # Copy files
 COPY requirements.txt .
-COPY app/ app/
+COPY app/ .
 
 # Install dependencies
 RUN pip install --upgrade pip \
  && pip install -r requirements.txt
+
+# Expose the port Jupyter uses
+EXPOSE 8888
